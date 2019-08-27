@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 1268133 */
+  src: url('//at.alicdn.com/t/font_1268133_3mvfps13te.eot');
+  src: url('//at.alicdn.com/t/font_1268133_3mvfps13te.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1268133_3mvfps13te.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1268133_3mvfps13te.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1268133_3mvfps13te.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1268133_3mvfps13te.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.icon-search:before {
+  content: "\e8ef";
+}
+
+.icon-user:before {
+  content: "\e7ae"
+}
+
+.icon-group:before {
+  content: "\e7af";
+}
+
+.icon-user:before {
+  content: "\e7ae";
+}
+
+.icon-setting:before {
+  content: "\e78e";
+}
+
+.icon-comment:before {
+  content: "\e8e8";
+}
+
+.icon-eye:before {
+  content: "\e78f";
+}
+
+.icon-plus:before {
+  content: "\e8fe";
+}

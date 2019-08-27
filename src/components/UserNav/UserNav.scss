@@ -1,0 +1,37 @@
+.user-nav {
+  height: 100%;
+  min-height: 600px;
+  width: auto;
+  padding: 26px 4px 0;
+  background-color: #f3f3f3;
+  .my-info {
+    text-align: center;
+    .avatar {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      margin-bottom: 50px;
+      background: url('../../common/image/default.jpg') center/100%;
+    }
+  }
+  .nav {
+    a {
+      color: #aaa;
+    }
+    .iconfont {
+      padding-bottom: 30px;
+      i {
+        font-size: 44px;
+      }
+    }
+  }
+  .setting {
+    position: absolute;
+    bottom: 30px;
+    i {
+      font-size: 44px;
+      color: #aaa;
+    }
+  }
+}

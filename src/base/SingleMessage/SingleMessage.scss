@@ -1,0 +1,27 @@
+.message-wrapper {
+  width: 100%;
+  display: flex;
+  .user-avatar {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: purple;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+  }
+  .message-info-wrapper {
+    flex: 1 1 auto;
+    .message-info {
+      font-size: 10px;
+      color: #aaa;
+    }
+    .message-content {
+      font-size: 11px;
+      color: #aaa;
+      border-radius: 5px;
+      padding: 10px 5px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.single-contact {
+  min-width: 70px;
+  display: flex;
+  .avatar-wrapper {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+  .content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .info-wrapper {
+      font-size: 14px;
+      line-height: 23px;
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: space-between;
+      .info-time {
+        color: #999;
+        vertical-align: middle;
+      }
+    }
+    .message-wrapper {
+      font-size: 12px;
+      flex: 1 1 auto;
+      line-height: 23px;
+    }
+  }
+}

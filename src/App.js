@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import UserNav from 'components/UserNav/UserNav.js';
+import Group from 'components/Group/Group.js';
+import ChatRoom from 'components/ChatRoom/ChatRoom.js';
+import {BrowserRouter as Router} from 'react-router-dom';
+import 'common/js/socket.js';
+import styles from './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='layout-wrapper'>
+      <Router>
+      <div className='layout-left-wrapper'>
+        <div className='userNav-wrapper'>
+          <UserNav></UserNav>
+        </div>
+        <div className='group-wrapper'>
+          <Group></Group>
+        </div>
+      </div>
+      </Router>
+      <Router>
+      <div className='layout-right-wrapper'>
+        <div className='chat-room-wrapper'>
+          <ChatRoom></ChatRoom>
+        </div>
+      </div>
+      </Router>
     </div>
   );
 }

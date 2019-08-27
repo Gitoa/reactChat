@@ -1,0 +1,17 @@
+.single-group {
+  min-width: 70px;
+  display: flex;
+  .avatar-wrapper {
+    height: 46px;
+    width: 46px;
+    border-radius: 5px;
+    background-color: #ccc;
+    margin: 10px;
+  }
+  .name-wrapper {
+    flex: 1 1 auto;
+    font-size: 16px;
+    line-height: 66px;
+    border-bottom: 1px solid #ccc;
+  }
+}
