@@ -3,14 +3,17 @@
   width: 100%;
   height: 100%;
   .chat-content {
-    padding-bottom: 50px;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 50px);
     border-bottom: 1px solid #ccc;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .message-wrapper {
+      padding: 10px 5px;
+    }
   }
   .input-wrapper {
     width: 100%;
     height: 50px;
-    margin-top: -50px;
   }
 }

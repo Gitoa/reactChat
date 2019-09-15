@@ -1,67 +1,165 @@
 import * as ActionTypes from './ActionTypes';
 
-export const open_chat = (chat) => {
+export const initStore = (localStore) => {
+  return {
+    type: ActionTypes.INIT_STORE,
+    localStore,
+  }
+}
+
+export const openChat = (chat) => {
   return {
     type: ActionTypes.OPEN_CHAT,
     chat: chat
   }
 }
 
-export const close_chat = (chat_id) => {
+export const closeChat = (chatId) => {
   return {
     type: ActionTypes.CLOSE_CHAT,
-    id: chat_id
+    id: chatId
   }
 }
 
-export const change_chat = (new_chat_id) => {
+export const changeChat = (newChatId, newChatType) => {
+  console.log()
   return {
     type: ActionTypes.CHANGE_CHAT,
-    id: new_chat_id,
+    id: newChatId,
+    chatType: newChatType,
   }
 }
 
-export const load_message = (user_id) => {
+export const setMessageList = (msgList) => {
   return {
-    type: ActionTypes.LOAD_MESSAGE,
-    admin_id: user_id,
+    type: ActionTypes.SET_MESSAGE_LIST,
+    msgList
   }
 }
 
-export const add_message = (msg) => {
+export const addMessage = (msg, chatId) => {
   return {
     type: ActionTypes.ADD_MESSAGE,
-    target_id: msg.msg_type + '_' + msg.target.id,
+    chatId,
     msg
   }
 }
 
-export const update_message = (msg) => {
+export const updateMessage = (msg, chatId) => {
   return {
     type: ActionTypes.UPDATE_MESSAGE,
-    target_id: msg.msg_type + '_' + msg.target.id,
+    chatId,
     msg,
   }
 }
 
-export const delete_message = (msg) => {
+export const deleteMessage = (msg, chatId) => {
   return {
     type: ActionTypes.DELETE_MESSAGE,
-    target_id: msg.msg_type + '_' + msg.target.id,
+    chatId,
     msg
   }
 }
 
-export const save_message = (msg) => {
+export const saveMessage = (msg) => {
   return {
     type: ActionTypes.SAVE_MESSAGE,
-    target_id: msg.msg_type + '_' + msg.target.id,
+    targetId: msg.msgType + '_' + msg.target.id,
   }
 }
 
-export const clear_message = (target_id) => {
+export const clearMessage = (chatId) => {
   return {
     type: ActionTypes.CLEAR_MESSAGE,
-    target_id,
+    chatId,
+  }
+}
+
+export const clearAllMessage = () => {
+  return {
+    type: ActionTypes.CLEAR_ALL_MESSAGE,
+  }
+}
+
+export const readAllMessage = (chatId) => {
+  return {
+    type: ActionTypes.READ_ALL_MESSAGE,
+    chatId,
+  }
+}
+
+export const setAdmin = (admin) => {
+  return {
+    type: ActionTypes.SET_ADMIN,
+    admin
+  }
+}
+
+export const setFriendList = (friendList) => {
+  return {
+    type: ActionTypes.SET_FRIEND_LIST,
+    friendList,
+  }
+}
+
+export const deleteFriend = (id) => {
+  return {
+    type: ActionTypes.DELETE_FRIEND,
+    id,
+  }
+}
+
+export const addFriend = (user) => {
+  return {
+    type: ActionTypes.ADD_FRIEND,
+    user,
+  }
+}
+
+export const setGroupList = (groupList) => {
+  return {
+    type: ActionTypes.SET_GROUP_LIST,
+    groupList,
+  }
+}
+
+export const setContactList = (contactList) => {
+  return {
+    type: ActionTypes.SET_CONTACT_LIST,
+    contactList,
+  }
+}
+
+export const addContact = (contact) => {
+  return {
+    type: ActionTypes.ADD_CONTACT,
+    contact,
+  }
+}
+
+export const deleteContact = (chatId) => {
+  return {
+    type: ActionTypes.DELETE_CONTACT,
+    chatId,
+  }
+}
+
+export const clearContact = () => {
+  return {
+    type: ActionTypes.CLEAR_CONTACT,
+  }
+}
+
+export const joinGroup = (group) => {
+  return {
+    type: ActionTypes.JOIN_GROUP,
+    group,
+  }
+}
+
+export const quitGroup = (groupId) => {
+  return {
+    type: ActionTypes.QUIT_GROUP,
+    groupId,
   }
 }

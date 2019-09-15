@@ -28,6 +28,7 @@ class User {
   insertSocket(userSocket) {
     let index = this.socketList.findIndex(item => item.sessionId === userSocket.sessionId);
     index === -1 ? this.socketList.push(userSocket) : this.socketList.splice(index, 1, userSocket);
+    console.log('index: ', index, 'length: ', this.socketList.length, 's_id: ', userSocket.sessionId);
   }
   deleteSocket(s_id) {
     let index = this.socketList.findIndex(item => item.sessionId === s_id);
@@ -38,7 +39,7 @@ class User {
 class UserSocket {
   constructor(userId, sessionId, socket) {
     this.userId = userId;
-    this.socketId = sessionId;
+    this.sessionId = sessionId;
     this.socket = socket;
   }
 }

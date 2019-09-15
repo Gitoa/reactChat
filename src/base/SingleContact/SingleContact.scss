@@ -1,12 +1,28 @@
 .single-contact {
   min-width: 70px;
   display: flex;
+  position: relative;
   .avatar-wrapper {
+    position: relative;
     width: 46px;
     height: 46px;
     border-radius: 50%;
     background-color: #ccc;
-    margin-right: 10px;
+    margin: 10px;
+    line-height: 46px;
+    color: white;
+    text-align: center;
+    .unread-mark {
+      position: absolute;
+      min-width: 12px;
+      right: 0;
+      line-height: 12px;
+      padding: 0 2.5px;
+      font-size: 8px;
+      color: white;
+      background-color: red;
+      border-radius: 6px;
+    }
   }
   .content-wrapper {
     flex: 1 0 auto;
@@ -28,6 +44,25 @@
       font-size: 12px;
       flex: 1 1 auto;
       line-height: 23px;
+    }
+  }
+  .context-menu-wrapper {
+    position: absolute;
+    display: none;
+    right:20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: auto;
+    z-index: 999;
+    background-color: red;
+    text-align: center;
+    line-height: 15px;
+    padding: 0 5px;
+    border-radius: 5px;
+    p {
+      font-size: 8px;
+      color: white;
     }
   }
 }

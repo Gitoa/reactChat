@@ -1,0 +1,73 @@
+.user-card-wrapper {
+  position: fixed;
+  height: auto;
+  min-width: 30%;
+  border-radius: 5px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 999;
+  .x-icon {
+    font-size: 18px;
+    line-height: 18px;
+    padding: 6px 12px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+  }
+  .user-info {
+    padding: 20px;
+    .avatar-wrapper {
+      display: flex;
+      justify-content: center;
+      .avatar {
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: blueviolet;
+        color: white;
+        font-size: 12px;
+        line-height: 50px;
+        text-align: center;
+      }
+    }
+    .user-name {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      text-align: center;
+    }
+    .user-slogan {
+      padding: 10px;
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+    }
+    .button-wrapper {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      .button {
+        width: 100px;
+        border-radius: 5px;
+        height: 35px;
+        color: #fff;
+        text-align: center;
+        line-height: 35px;
+        display: inline-block;
+        &.delete-friend-button {
+          background-color: red;
+        }
+        &.add-friend-button {
+          background-color:#66b3ef;
+        }
+        &.open-chat-button {
+          margin-left: 10px;
+          background-color:#66b3ef;
+        }
+      }
+    }
+  }
+}

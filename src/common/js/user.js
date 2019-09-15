@@ -1,11 +1,11 @@
 export default class UserClass {
-  constructor({time, name, avatar, id, information}) {
+  constructor({signup_time, name, avatar, id, slogan}) {
     this.type = 'private';
-    this.create_time = time;
+    this.signup_time = signup_time;
     this.name = name;
     this.avatar = avatar;
     this.id = id;
-    this.information = information;
+    this.slogan = slogan;
   }
 
   sendMessage(message) {

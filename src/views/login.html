@@ -2,34 +2,92 @@
   <head>
     <title>登录/注册</title>
     <meta charset='utf-8'>
-    <link href='' rel='stylesheet' type='text/css'>
+    <style>
+      #main {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        margin-left: -300px;
+        margin-top: -50px;
+        width: 600px;
+        height: 150px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        text-align: center;
+        padding-top: 20px;
+      }
+      .hide {
+        display: none;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      form.signin {
+        margin-top: 5px;
+        text-align: center;
+      }
+      form input {
+        line-height: 25px;
+      }
+      form p {
+        width: 50px;
+        height: 20px;
+        color: white;
+        background-color: #ccc;
+        padding: 0 5px;
+        line-height: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 270px;
+        margin-top: 20px;
+        text-align: center;
+      }
+      form.signup {
+        margin-top: 5px;
+        text-align: center;
+      }
+      p a {
+        color: rgb(33, 33, 211);
+        cursor: pointer;
+      }
+      
+    </style>
   </head>
   <body>
     <div id='main'>
       <form class='signin' action='/signin'>
         <input class='username' type='text' placeholder='your name' name='name'>
         <input class='password' type='password' placeholder='your password' name='password'>
-        <div class='submit'>submit</div>
+        <p class='submit'>submit</p>
       </form>
-      <div class='signin'>NO ACCOUNT? SIGN UP</div>
-      <form class='signup' action='/signup'>
+      <p class='signin'>没有账户？请<a class='change-to-signup'>注册</a></p>
+      <form class='signup hide' action='/signup'>
         <input class='username' type='text' placeholder='your name' name='name'>
         <input class='password' type='password' placeholder='your password' name='password'>
         <input type='password' placeholder='repeat your password' class='repeatPassword' name='repeatPassword'>
-        <div class='submit'>submit</div>
+        <p class='submit'>submit</p>
       </form>
-      <div class='signup'>HAVE ACCOUNT? SIGN IN</div>
+      <p class='signup hide'>已有账户？请<a class='change-to-signin'>登录</a></p>
     </div>
   </body>
   <script>
     window.onload = function() {
       let signin = document.querySelector('.signin .submit');
       let signup = document.querySelector('.signup .submit');
+      let changeToSignin = document.querySelector('.change-to-signin');
+      let changeToSignup = document.querySelector('.change-to-signup');
+      let signinForm = document.querySelector('form.signin');
+      let signupForm = document.querySelector('form.signup');
+      let signinP = document.querySelector('p.signin');
+      let signupP = document.querySelector('p.signup');
+
       signin.addEventListener('click', () => {
         let name = document.querySelector('.signin .username').value;
         let password = document.querySelector('.signin .password').value;
         if (name.trim() === '') {
           console.log('用户名为空');
+          alert('用户名不应为空');
           return;
         }
         //发送表单
@@ -42,10 +100,14 @@
               if (ack.result) {
                 console.log('登录成功');
                 //接下来进行页面跳转
+                window.location.href= '/';
               } else {
                 console.log('登录失败:', ack.msg);
+                alert( `登录失败,${ack.msg}`);
               }
               //页面跳转
+            } else {
+              alert('登录失败');
             }
           }
         }
@@ -60,6 +122,7 @@
         let user = document.querySelector('.signup .username').value;
         if (user.trim() === '') {
           console.log('用户名为空');
+          alert('用户名不能为空');
           return
         }
         //对密码判断，长度，两次输入是否一致
@@ -67,10 +130,12 @@
         let repeatPassword = document.querySelector('.signup .repeatPassword').value;
         if (password.length < 5 || password.length > 20) {
           console.log('密码长度问题');
+          alert('密码应大于5位小于20位');
           return
         }
         if (password !== repeatPassword) {
           console.log('两次输入不一致');
+          alert('两次输入的密码不一致')
           return
         }
         let xhr = new XMLHttpRequest();
@@ -79,6 +144,14 @@
             if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
               //根据后台返回结果判断
               console.log(xhr.responseText);
+              let ack = JSON.parse(xhr.responseText);
+              if (ack.code === 1) {
+                alert('注册成功');
+              } else {
+                alert(`注册失败,${ack.msg}`)
+              }  
+            } else {
+              alert('注册失败');
             }
           }
         }
@@ -90,6 +163,19 @@
         }))
       }, false)
 
+      changeToSignin.addEventListener('click', () => {
+        signinForm.classList.remove('hide');
+        signinP.classList.remove('hide');
+        signupForm.classList.add('hide');
+        signupP.classList.add('hide');
+      })
+
+      changeToSignup.addEventListener('click', () => {
+        signupForm.classList.remove('hide');
+        signupP.classList.remove('hide');
+        signinForm.classList.add('hide');
+        signinP.classList.add('hide');
+      })
     }
   </script>
 </html>

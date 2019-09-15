@@ -1,8 +1,8 @@
 export default class GroupClass {
-  constructor({name, time, id, members, avatar}) {
+  constructor({name, create_time, id, members, avatar}) {
     this.type = 'group';
     this.name = name;
-    this.create_time = time;
+    this.create_time = create_time;
     this.id = id;
     this.members = members;
     this.avatar = avatar;

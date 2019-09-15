@@ -1,0 +1,16 @@
+.prompt {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  border-radius: 5px;
+  font-size: 11px;
+  padding: 10px;
+  z-index: 9999;
+  color: rgb(204, 29, 29);
+  background-color: #fff;
+  border: 1px solid #eee;
+  &.inactive {
+    display: none;
+  }
+}

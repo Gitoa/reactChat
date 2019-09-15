@@ -4,14 +4,16 @@
   .avatar-wrapper {
     height: 46px;
     width: 46px;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: #ccc;
     margin: 10px;
+    color: white;
+    text-align: center;
+    line-height: 46px;
   }
   .name-wrapper {
     flex: 1 1 auto;
     font-size: 16px;
     line-height: 66px;
-    border-bottom: 1px solid #ccc;
   }
 }

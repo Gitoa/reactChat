@@ -6,6 +6,9 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
+const axios = require('axios');
+var bodyParser = require('body-parser');
+const session = require('express-session');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -99,6 +102,81 @@ module.exports = function(proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
+
+      //
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: false }));
+
+      app.get('/login', function(req, res) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        fs.createReadStream('./src/views/login.html').pipe(res);
+      })
+
+      app.post('/signup', function(req, res) {
+        const URL = "http://localhost:3030/signup";
+        let body = req.body;
+        console.log(body)
+        axios.post(URL, body).then(response => {
+          let data = response.data;
+          res.json(data)
+        }).catch(e => {
+          console.log(e)
+        })
+      })
+
+      app.post('/signin', function(req, res) {
+        const URL = "http://localhost:3030/signin";
+        let body = req.body;
+        console.log(body);
+        axios.post(URL, body).then(response => {
+          let data = response.data;
+          console.log(response.headers['set-cookie']);
+          res.setHeader('set-cookie', `${response.headers['set-cookie'][0]}`)
+          res.json(data);
+        }).catch(e => {
+          console.log(e);
+        })
+      })
+
+      app.get('/init_info', (req, res) => {
+        const URL = "http://localhost:3030/init_info?user_id=" + req.query['user_id'];
+        axios.get(URL).then(response => {
+          res.json(response.data)
+        }).catch(e => {
+          console.log(e);
+        })
+      })
+
+      app.get('/group_info/:g_id', function(req, res) {
+        const URL = "http://localhost:3030/group_info/" + req.params.g_id;
+        axios.get(URL).then(response => {
+          console.log('response data: ', response.data);
+          res.json(response.data);
+        }).catch(e => {
+          console.log(e);
+        })
+      })
+
+      app.get('/logout', function(req, res) {
+        const URL = "http://localhost:3030/logout?user_id=" + req.query['user_id'];
+        axios.get(URL).then(response => {
+          console.log('response data: ', response.data);
+          res.setHeader('set-cookie','userId=-1; max-age=0;');    
+          res.json(response.data);
+        }).catch(e => {
+          console.log(e);
+        })
+      })
+
+      app.get('/online_search', function(req, res) {
+        const URL = "http://localhost:3030/search?keyword=" + encodeURIComponent(req.query['keyword']);
+        axios.get(URL).then(response => {
+          console.log('response data: ', response.data);
+          res.json(response.data);
+        }).catch(e => {
+          console.log(e);
+        })
+      })
     },
   };
 };

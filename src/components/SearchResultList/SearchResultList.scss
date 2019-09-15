@@ -1,0 +1,32 @@
+.search-result-wrapper {
+  height: 100%;
+  overflow: scroll;
+  p.tagName {
+    padding: 10px;
+    font-size: 14px;
+    color: #888;
+  }
+  p.empty-wrapper {
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+  }
+  p.toggle-wrapper {
+    text-align:right;
+    font-size: 14px;
+    color: rgb(65, 65, 243);
+    padding: 10px;
+  }
+  .contact-result-wrapper {
+    padding: 20px;
+  }
+  .friend-result-wrapper {
+    padding: 20px;
+  }
+  .group-result-wrapper {
+    padding: 20px;
+  }
+}

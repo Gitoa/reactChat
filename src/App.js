@@ -3,29 +3,16 @@ import UserNav from 'components/UserNav/UserNav.js';
 import Group from 'components/Group/Group.js';
 import ChatRoom from 'components/ChatRoom/ChatRoom.js';
 import {BrowserRouter as Router} from 'react-router-dom';
+import {Route} from 'react-router-dom';
+import Login from './views/login';
+import App2 from './App2.js';
 import 'common/js/socket.js';
 import styles from './App.scss';
 
 function App() {
   return (
-    <div className='layout-wrapper'>
-      <Router>
-      <div className='layout-left-wrapper'>
-        <div className='userNav-wrapper'>
-          <UserNav></UserNav>
-        </div>
-        <div className='group-wrapper'>
-          <Group></Group>
-        </div>
-      </div>
-      </Router>
-      <Router>
-      <div className='layout-right-wrapper'>
-        <div className='chat-room-wrapper'>
-          <ChatRoom></ChatRoom>
-        </div>
-      </div>
-      </Router>
+    <div>
+      <App2></App2>
     </div>
   );
 }

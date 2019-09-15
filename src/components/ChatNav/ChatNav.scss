@@ -2,15 +2,10 @@
   width: 100%;
   height: 100%;
   display: flex;
-  a {
+  .tag-wrapper {
     flex: 0 1 auto;
-    overflow: hidden;
     &.active {
       flex: 0 0 auto;
-    }
-    .chat-name {
-      height: 100%;
-      width: 100px;
     }
   }
 }

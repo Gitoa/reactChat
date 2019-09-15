@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {avatarColor} from 'common/js/config.js';
 import styles from './SingleMessage.scss';
 
 class SingleMessage extends Component {
@@ -6,21 +7,21 @@ class SingleMessage extends Component {
     super(props);
   }
   render() {
-    const message = this.props.msg;
+    let message = this.props.msg, sender = this.props.sender;
+    const senderName = message.senderName;
+    const currentAvatarColor = avatarColor[senderName.charCodeAt(0) % 7];
     return (
-      <div className='message-wrapper'>
-        <div className='user-avatar'>
-          {message.from_user.avatar ? <img src={message.from_user.avatar}/> : <span>{message.from_user.name[0].toUpperCase()}</span>}
-        </div>
-        <div className='message-info-wrapper'>
-          <div className='message-info'>
-            <span>{message.from_user.name}</span>
-            <span>{message.create_time}</span>
+      <div className={`message-wrapper from-${sender}`}>
+        <div className='message-info'>
+          <div className='avatar-wrapper' style={{'backgroundColor': currentAvatarColor}}>
+            {message.senderAvatar ? <img src={message.senderAvatar}/> : <span>{senderName[0].toUpperCase()}</span>}
           </div>
-          <p className='message-content'>
-            {message.content}
-          </p>
+          <p className='sender-name'>{senderName}</p>
+          <p className='send-time'></p>
         </div>
+        <p className='message-content'>
+          {message.msgContent}
+        </p>
       </div>
     )
   }

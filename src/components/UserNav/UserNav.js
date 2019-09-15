@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import navUser from 'common/js/nav_user.js';
 import {NavLink} from 'react-router-dom';
 import styles from './UserNav.scss';
+import {connect} from 'react-redux';
 
 class UserNav extends Component {
   constructor() {
@@ -20,6 +21,9 @@ class UserNav extends Component {
                 color: '#87ceeb'
               }}>
                 <div className='iconfont'>
+                  {
+                    item.icon === 'icon-comment' && this.props.unreadMsgCount > 0 ? <div className='red-dot'></div> : null
+                  }
                   <i className={item.icon}/>
                 </div>
               </NavLink>
@@ -27,11 +31,22 @@ class UserNav extends Component {
           })}
         </div>
         <div className='setting iconfont'>
-          <i className='icon-setting'/>
+          <NavLink to='/setting' activeStyle={{color: '#87ceeb'}}><i className='icon-setting'/></NavLink>
         </div>
       </div>
     )
   }
 }
 
-export default UserNav;
+function mapState(state, ownProps) {
+  let count = 0;
+  state.contacts.forEach(item => {
+    let msgs = state.messages[item.type + '_' + item.id];
+    msgs && msgs.unreadMsgCount && (count += msgs.unreadMsgCount);
+  });
+  return {
+    unreadMsgCount: count,
+  }
+}
+
+export default connect(mapState)(UserNav);

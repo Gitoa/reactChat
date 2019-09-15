@@ -1,27 +1,75 @@
-.message-wrapper {
+.message-wrapper.from-others {
   width: 100%;
-  display: flex;
-  .user-avatar {
-    flex: 0 0 auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: purple;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-  }
-  .message-info-wrapper {
-    flex: 1 1 auto;
-    .message-info {
+  height: auto;
+  position: relative;
+  .message-info {
+    width: auto;
+    display: flex;
+    .avatar-wrapper {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background-color: purple;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+    }
+    .sender-name {
+      margin-left: 8px;
       font-size: 10px;
       color: #aaa;
     }
-    .message-content {
-      font-size: 11px;
+    .send-time {
+      margin-left: 5px;
+      font-size: 10px;
       color: #aaa;
-      border-radius: 5px;
-      padding: 10px 5px;
     }
+  }
+  .message-content {
+    position: absolute;
+    width: 80%;
+    top: 30px;
+    left: 53px;
+    font-size:14px;
+  }
+}
+
+.message-wrapper.from-me {
+  width: 100%;
+  height: auto;
+  position: relative;
+  .message-info {
+    display: flex;
+    flex-flow: row-reverse;
+    width: auto;
+    .avatar-wrapper {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background-color: purple;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+    }
+    .sender-name {
+      margin-right: 8px;
+      font-size: 10px;
+      color: #aaa;
+    }
+    .send-time {
+      margin-right: 5px;
+      font-size: 10px;
+      color: #aaa;
+    }
+  }
+  .message-content {
+    position: absolute;
+    width: 80%;
+    top: 30px;
+    right: 53px;
+    font-size:  14px;
+    text-align: right;
   }
 }

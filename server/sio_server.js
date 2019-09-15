@@ -8,8 +8,8 @@ const sql = require('./mysql.js');
 const io = require('socket.io')(server);
 var { UserList, User, UserSocket} = require('./user.js');
 const { onlineList } = require('./store.js');
-const {sendMsg} = require('./utils.js');
-
+const {sendMsg, dealOpt} = require('./utils.js');
+var count = 0;
 
 app.use('/static', express.static('../build/static'));
 app.use(bodyParser.json());
@@ -24,28 +24,63 @@ app.use(session({
 }))
 
 //路由部分
-io.on('connection', (socket) => {
+io.on('connection', async(socket) => {
+  console.log(socket.id);
   socket.emit('connect_confirm', {'msg': 'welcome'});
-  socket.on('config_init', (config) => {
+  socket.on('config_init', async(config) => {
     console.log(config);
     let userId = config.userId;
-    let newUserSocket = new UserSocket(userId, userId, socket);
-    onlineList.addUserSocket(userId, newUserSocket);
-    socket.on('disconnect', () => {
-      console.log('delete user: ', newUserSocket.userId, ' socket: ', newUserSocket.socketId);
-      onlineList.deleteUserSocket(userId, newUserSocket.socketId);
-    })
-    socket.removeAllListeners('config_init');
+    if (userId !== -1) {
+      let fakedSessionId = count ++;
+      let newUserSocket = new UserSocket(userId, fakedSessionId, socket);
+      onlineList.addUserSocket(userId, newUserSocket);
+      socket.on('disconnect', () => {
+        console.log('delete user: ', newUserSocket.userId, ' socket: ', newUserSocket.sessionId);
+        onlineList.deleteUserSocket(userId, newUserSocket.sessionId);
+      })
+      socket.on('logout', () => {
+        console.log('delete user: ', newUserSocket.userId, ' socket: ', newUserSocket.sessionId);
+        onlineList.deleteUserSocket(userId, newUserSocket.sessionId);
+      })
+    }
   })
-  socket.on('msg', (msg) => {
+
+  socket.on('getOfflineMsg', async (userId, cb) => {
+    let offlineMsg = await sql.getOfflineMsg(userId);
+    cb(offlineMsg);
+    //在读取完离线消息后应该从后台删除
+  })
+
+  socket.on('clearOfflineMsg', async(userId, cb) => {
+    await sql.clearOfflineMsg(userId);
+    cb('clear');
+  })
+  socket.on('msg', (msg, cb) => {
     console.log(msg);
     sendMsg(msg);
+    cb(1);
   })
+
+  socket.on('opt', (msg, cb) => {
+    try {
+      console.log(msg);
+      dealOpt(msg).then((groupId) => {
+        cb(null, groupId)
+      }).catch((e) => {
+        console.log('1', e);
+        cb(e);
+      })
+    } catch(err) {
+      console.log('2', err);
+      cb(err)
+    }
+  })
+
   socket.on('disconnect', () => {
     console.log(socket.id + ' disconnect')
   })
 })
 
-server.listen(3000, () => {
-  console.log('listen on port 3000');
+server.listen(3031, () => {
+  console.log('listen on port 3031');
 })

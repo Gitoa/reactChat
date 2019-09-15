@@ -7,15 +7,9 @@ const reduxDevtools = window.devToolsExtension ? window.devToolsExtension():f=>f
 const initValues = {
   admin: 
   {
-    id: 'naruto',
-    name: 'naruto',
-    create_time: '14:20',
-    type: 'private',
-    information: 'peace',
-    avatar: '',
-  },
 
-  users: [
+  },
+  friends: [
 
   ],
   groups: [
@@ -25,25 +19,26 @@ const initValues = {
 
   ],
   chats: {
-    chatList: [{name: 'sasuke', target: {
-      create_time: '14:34',
+    chatList: [/*{
+      signup_time: '14:34',
       name: 'sasuke',
       avatar: '',
       id: 'sasuke',
-      information: 'revenge',
+      slogan: 'revenge',
       type: 'private',
-    }, id: 'private_sasuke'},
-    {name: 'naruto', target: {
-      create_time: '16:32',
+    },
+    {
+      signup_time: '16:32',
       name: 'naruto',
       avatar: '',
       id: 'naruto',
-      information: 'peace',
+      slogan: 'peace',
       type: 'private',
-    }, id: 'private_naruto'}],
-    currentChatId: 'private_sasuke',
+    }*/],
+    currentChatId: -1,
+    currentChatType: 'private',
   },
-  messages: loadMessage('test1')
+  messages: {},
 }
 
 const store = createStore(reducer, initValues, compose(reduxDevtools));

@@ -1,0 +1,42 @@
+.group-info-wrapper {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  height: calc(100% - 50px);
+  width: 200px;
+  background-color: #f6f7f9;
+  z-index: 99;
+  .notice-wrapper {
+    padding: 10px;
+    .notice-title {
+      position: relative;
+      font-size: 14px;
+      padding-bottom: 10px;
+      color: #676767;
+    }
+    .notice-content {
+      height: 60px;
+      overflow: hidden;
+      font-size: 12px;
+      word-wrap: break-word;
+      overflow-y: auto;
+    }
+  }
+  .members {
+    list-style: none;
+    overflow-y: auto;
+    font-size: 18px;
+    height: calc(100% - 140px);
+  }
+  .quit-group {
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+    color: #e44545;
+    width: 100%;
+    border-top: 1px solid #f3eeee;
+    padding: 10px 0;
+    cursor: pointer;
+    text-align: center;
+  }
+}

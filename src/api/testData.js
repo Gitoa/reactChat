@@ -24,7 +24,7 @@ var teamData = [
 
 var userData = [
   {
-    name: 'tt', time: '2019-08-20', avatar: '', id: 'user1'
+    name: 'tt', signup_time: '2019-08-20', avatar: '', id: 'user1'
   }
 ]
 

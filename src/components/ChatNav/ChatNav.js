@@ -34,12 +34,13 @@ class ChatList extends Component {
 export default tChatList;
 */
 
-function ChatNav ({chatList, currentChatId, closeChat, changeChat}) {
+function ChatNav ({chatList, currentChatId, closeChat, changeChat, currentChatType}) {
   return (<div className='chat-nav'>
     {chatList.map((item, index) => {
+      let active = item.id===currentChatId && item.type===currentChatType
       return (
-        <div className='tag-wrapper' key={item.id}>
-          <Tag tagName={item.name} id={item.id} clickTag={()=>{changeChat(item.id)}} closeTag={()=>{closeChat(item.id)}} active={item.id===currentChatId}></Tag>
+        <div className={active ? 'tag-wrapper active' : 'tag-wrapper'} key={`${item.type}_${item.id}`}>
+          <Tag tagName={item.name} id={item.id} clickTag={()=>{changeChat(item.id, item.type)}} closeTag={()=>{closeChat(item.id)}} active={active}></Tag>
         </div>
       )
     })}
@@ -50,6 +51,7 @@ function mapState(state, ownProps) {
   return {
     chatList: state.chats.chatList,
     currentChatId: state.chats.currentChatId,
+    currentChatType: state.chats.currentChatType,
   }
 }
 
@@ -57,11 +59,12 @@ function mapDispatch(dispatch, ownProps) {
   return {
     closeChat: (id) => {
       console.log('close tag');
-      dispatch(Actions.close_chat(id))
+      dispatch(Actions.closeChat(id))
     },
-    changeChat: (id) => {
-      console.log('change_chat:', id)
-      dispatch(Actions.change_chat(id))
+    changeChat: (id, type) => {
+      console.log('changeChat:', id, ' ', type);
+      dispatch(Actions.changeChat(id, type));
+      dispatch(Actions.readAllMessage(type + '_' + id));
     }
   }
 }

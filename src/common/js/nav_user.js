@@ -5,9 +5,9 @@ const nav_info = [
     path: '/contact',
   },
   {
-    type: 'user',
+    type: 'friend',
     icon: 'icon-user',
-    path: '/user',
+    path: '/friend',
   },
   {
     type: 'group',
